@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div class="container my-4 text-center"><h1>CRUD OPERATION</h1></div>
+      <div class="container" id="msg1"></div>
+     <div class="container container1 my-4">
+        
+       <div class="right">
+        <div class="input-group flex-nowrap my-3 ">
+            <span class="input-group-text " >Name</span>
+            <input type="text" class="form-control" placeholder="Enter your name" id="name" aria-label="Username">
+           
+          </div>
+          <div class="input-group flex-nowrap my-3">
+            <span class="input-group-text" >Email</span>
+            <input type="text" class="form-control" placeholder="Enter your Email" id="email"  aria-describedby="addon-wrapping">
+          </div>
+          <div class="input-group flex-nowrap my-3">
+            <span class="input-group-text" >Address</span>
+            <input type="text" class="form-control" placeholder="Enter your address" id="address" ria-describedby="addon-wrapping">
+          </div>
+       </div>
+        <div class="left">
+            <div class="input-group flex-nowrap my-3">
+                <span class="input-group-text" >phone</span>
+                <input type="text" class="form-control" placeholder="Enter your phone" id="phone"  aria-describedby="addon-wrapping">
+              </div>
+              <div class="input-group flex-nowrap my-3">
+                <span class="input-group-text" >Gender</span>
+                <input type="text" class="form-control" placeholder="Enter your gender" id="gender" aria-describedby="addon-wrapping">
+              </div>
+              <div class="input-group flex-nowrap my-3">
+                <span class="input-group-text" >Salary</span>
+                <input type="number" class="form-control" placeholder="Enter your salary" id="sal" aria-describedby="addon-wrapping">
+              </div>
+        </div>
+       
+     </div>
+     <div class="con"><button class="btn btn-primary but" style="display: block; margin: 0 auto; width: 20%;"  id="add">Submit</button></div>
+     <hr>
+     <div class="container">
+     <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">SR.NO</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">phone</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody id="tablebody">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td><button class="btn btn-danger" >Delete</button>
+            <button class="btn btn-danger" >Update</button></td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+  <script>
+         update();   
+    function getUpdate()
+    {
+                name=document.getElementById('name').value;
+                email=document.getElementById('email').value;
+                address=document.getElementById('address').value;
+                phn=document.getElementById('phone').value;
+                gender=document.getElementById('gender').value;
+                salary=document.getElementById('sal').value;
+                if(localStorage.getItem('crud')==null){
+                Arr=[];
+                Arr.push([name,email,address,phn,gender,salary]);
+               window.localStorage.setItem('crud',JSON.stringify(Arr));
+               update();
+                }else{
+                    itesmArrStr=localStorage.getItem('crud');
+                    Arr=JSON.parse(itesmArrStr);
+                    Arr.push([name,email,address,phn,gender,salary]);
+                    localStorage.setItem('crud',JSON.stringify(Arr));
+                    update();
+                }
+                document.getElementById('name').value='';
+                document.getElementById('email').value='';
+                document.getElementById('address').value='';
+                document.getElementById('phone').value='';
+                document.getElementById('gender').value='';
+                document.getElementById('sal').value='';
+    }
+     function update()
+     {
+        if(localStorage.getItem('crud')==null){
+                Arr=[];
+               window.localStorage.setItem('crud',JSON.stringify(Arr));
+                }else{
+                    itesmArrStr=localStorage.getItem('crud');
+                    Arr=JSON.parse(itesmArrStr);
+
+                }
+                  let str = "";
+                  Arr.forEach ((element,index )=> {
+                 str+=`
+                    <tr>
+                         <th scope="row">${index +1}</th>
+                         <td>${element[0]}</td>
+                         <td>${element[1]}</td>
+                         <td>${element[2]}</td>
+                         <td>${element[3]}</td>
+                         <td>${element[4]}</td>
+                         <td>${element[5]}</td>
+                         <td><button class="btn btn-primary" onclick="deleted(${index})">Delete</button>
+                            <button class="btn btn-primary" onclick="updated(${index})">Update</button>
+                            </td>
+                         </tr>`;
+                  });
+                 document.getElementById('tablebody').innerHTML=str;
+     }
+     add=document.getElementById('add');
+     add.addEventListener("click",getUpdate);
+     update();
+     function deleted(itemIndex){
+        itesmArrStr=localStorage.getItem('crud');
+                    Arr=JSON.parse(itesmArrStr);
+                    Arr.splice(itemIndex,1);
+                    //delete item index from the array
+                    localStorage.setItem('crud',JSON.stringify(Arr));
+                    update();
+     }
+    //   function clears()
+    //   {
+    //     if(confirm("do u really want to clear")){
+    //         localStorage.clear();
+    //         update();
+    //     }
+        
+    //   }
+    // function updated(itemIndex){
+    //     itesmArrStr=localStorage.getItem('crud');
+        
+    // }
+    function onEdit(td) {
+      itesmArrStr=localStorage.getItem('crud');
+    document.getElementById("firstName").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("lastName").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("mobileNumber").value = selectedRow.cells[2].innerHTML;
+    document.getElementById("salary").value = selectedRow.cells[3].innerHTML;
+    document.getElementById("city").value = selectedRow.cells[4].innerHTML;
+}
+
+  </script>
+</html>

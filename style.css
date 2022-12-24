@@ -1,0 +1,18 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+.container1{
+    display: flex;
+    width: auto;
+
+}
+.right{
+    width: 50%;
+    margin-right: 1rem;
+
+}
+.left{
+    width: 50%;
+}
